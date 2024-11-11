@@ -1,5 +1,5 @@
 [[d1_databases]]
 binding = "DB" 
 database_id = "982469c0-e005-4ff4-9197-e50603975a90"
-database_name = "test-cloudflare-react-d1" 
+database_name = "db-test-cloudflare-react-d1" 
 preview_database_id = "DB" # Required for Pages local development

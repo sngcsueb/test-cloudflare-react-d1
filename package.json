@@ -1,0 +1,44 @@
+{
+  "name": "cloudflare-pages-react-sqlite-starter",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && npm run vite:build",
+    "dev": "wrangler pages dev --compatibility-date=2023-10-30 --port 3000 --local -- npm run vite:dev",
+    "deploy": "npm run build && wrangler pages deploy ./dist",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "vite:dev": "vite",
+    "vite:build": "vite build",
+    "db:migrations:create": "npx wrangler d1 migrations create DB",
+    "db:migrations:apply": "npx wrangler d1 migrations apply --local DB",
+    "db:migrations:apply-production": "npx wrangler d1 migrations apply DB",
+    "db:init": "npm run db:migrations:apply",
+    "db:reset": "rimraf .wrangler/state && npm run db:init",
+    "db:dangerously-reset-production": "npx wrangler d1 execute DB --command 'DROP TABLE IF EXISTS d1_migrations' && npm run db:migrations:apply",
+    "db:exec": "wrangler d1 execute --local DB",
+    "db:exec-production": "wrangler d1 execute DB"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20231025.0",
+    "@tanstack/react-query": "^5.4.3",
+    "hono": "^3.9.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.0.5",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "wrangler": "^3.15.0"
+  }
+}
